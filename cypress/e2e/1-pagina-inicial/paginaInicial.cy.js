@@ -1,8 +1,8 @@
-import PaginaInicialPage from "../../support/pages/PaginaInicialPage";
+import HomePage from "../../support/pages/HomePage";
 
 describe("Página Inicial do Cardápio Digital", () => {
-  it.only("Deve carregar a página corretamente com todos os elementos visíveis", () => {
-    PaginaInicialPage.visit(); // Acesse a página inicial
-    PaginaInicialPage.validarPaginaInicial(); // Verifique se os elementos estão visíveis na versão desktop
+  it("Deve carregar a página inicial corretamente com todos os elementos visíveis", () => {
+    HomePage.visit(); // Acesse a página inicial
+    HomePage.validarPaginaInicial(); // Verifique se os elementos estão visíveis na versão desktop
   });
 });

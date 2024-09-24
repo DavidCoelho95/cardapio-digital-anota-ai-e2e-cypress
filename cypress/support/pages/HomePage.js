@@ -1,4 +1,4 @@
-class PaginaInicialPage {
+class HomePage {
   visit() {
     cy.visit(
       "https://staging-cardapio-digital.anota-ai.com/loja/teste-vaga-qa?f=msa"
@@ -59,4 +59,4 @@ class PaginaInicialPage {
       .click({ force: true }); // Força o clique, caso haja alguma sobreposição
   }
 }
-export default new PaginaInicialPage();
+export default new HomePage();
