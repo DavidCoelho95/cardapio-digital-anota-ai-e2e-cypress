@@ -194,7 +194,7 @@ class PedidoPage {
 
   concordarComPoliticaPrivacidade()
   {
-    cy.get('.box').click();
+    cy.get('.box').should('be.visible').click();
   }
 
   clicarNoBotaoFazerPedido(){
