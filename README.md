@@ -32,11 +32,8 @@ Para rodar o projeto localmente, siga os passos abaixo:
 
 ### 1. Clone o repositório:
 ```bash
-<<<<<<< HEAD
-git clone https://github.com/seu-usuario/cardapio-digital-e2e.git
-=======
 git clone https://github.com/DavidCoelho95/cardapio-digital-anota-ai-e2e-cypress.git
->>>>>>> origin/main
+>>>>>>> 
 ```
 
 ### 2.  Instale as dependências:
