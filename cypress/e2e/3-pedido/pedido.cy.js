@@ -3,6 +3,7 @@ import DetalhesProdutoPage from "../../support/pages/PaginaDetalhesProdutoPage";
 import CarrinhoPage from "../../support/pages/CarrinhoPage";
 import PedidoPage from "../../support/pages/PedidoPage";
 
+
 describe('Realizar Pedido', () => {
   it('Deve realizar pedido para retirar no estabelecimento', () => {
     HomePage.visit();
@@ -43,7 +44,7 @@ describe('Realizar Pedido', () => {
     PedidoPage.selecionarConsumirNoLocal();
     PedidoPage.selecionarFormaDePagamentoEmDinheiro();
     PedidoPage.preencherCampoObservacoes();
-    PedidoPage.concordarComPoliticaPrivacidade();
+    // PedidoPage.concordarComPoliticaPrivacidade();
     PedidoPage.clicarNoBotaoFazerPedido();
   });
   it.skip('Deve realizar pedido para entrega em casa', () => {
