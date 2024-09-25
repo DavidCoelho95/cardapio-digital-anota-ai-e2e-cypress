@@ -194,7 +194,7 @@ class PedidoPage {
 
   concordarComPoliticaPrivacidade()
   {
-    cy.get('.box').click();
+    cy.get('.box', { timeout: 10000 }).click();
   }
 
   clicarNoBotaoFazerPedido(){
