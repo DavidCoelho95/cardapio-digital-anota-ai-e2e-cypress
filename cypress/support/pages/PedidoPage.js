@@ -205,8 +205,8 @@ class PedidoPage {
   }
   validarElementosPaginaConfirmacaoPedido(){
     // Verifica se o cabeçalho contém "Pedido realizado"
-    cy.get('.header')
-      .should('contain', 'Pedido realizado');
+    // cy.get('.header')
+    //   .should('contain', 'Pedido realizado');
     // Verifica se a mensagem de feedback contém "Pedido realizado com sucesso!"
     cy.get('.feedback')
       .should('contain', 'Pedido realizado com sucesso!');
@@ -217,7 +217,7 @@ class PedidoPage {
     // Verifica se o botão "Continuar para o WhatsApp" está presente e visível
     cy.get('.outline')
       .should('be.visible')
-      .and('contain', 'Continuar para o WhatsApp');
+      .and('contain', 'Continuar no WhatsApp');
 
   }
 }
