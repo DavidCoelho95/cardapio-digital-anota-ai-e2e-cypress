@@ -133,13 +133,20 @@ class PedidoPage {
     cy.get(".list-item").click();
     this.preencherDadosEndereco();
     this.salvarEndereco();
+    this.selecionarEnderecoEntregaEmCasa();
   }
   preencherDadosEndereco() {
     // Preenche os campos com os dados gerados
-    cy.get('[data-testid="address-form"] > :nth-child(1) > [data-testid="field-input"]').type(address.rua);
+    cy.get(
+      '[data-testid="address-form"] > :nth-child(1) > [data-testid="field-input"]'
+    ).type(address.rua);
     cy.get(':nth-child(2) > [data-testid="field-input"]').type(address.numero);
-    cy.get(':nth-child(3) > [data-testid="field-input"]').type(address.complemento);
-    cy.get(':nth-child(4) > [data-testid="field-input"]').type(address.pontoDeReferencia);
+    cy.get(':nth-child(3) > [data-testid="field-input"]').type(
+      address.complemento
+    );
+    cy.get(':nth-child(4) > [data-testid="field-input"]').type(
+      address.pontoDeReferencia
+    );
     //  cy.get('[data-testid="address-form"] > :nth-child(5) > .column > [data-testid="field-input"]')
     //   .should('not.be.empty'); // Verifica se o campo Bairro não está vazio
     // // Verificar se o sexto campo está preenchido
@@ -150,6 +157,68 @@ class PedidoPage {
     cy.get(".button") // Seletor do botão
       .contains("Salvar") // Verifica se contém o texto "Salvar"
       .click(); // Clica no botão
+  }
+  selecionarEnderecoEntregaEmCasa() {
+    cy.get(".delivery-address").click();
+  }
+  selecionarRetirarNoEstabelecimento() {
+    cy.get('[data-testid="take_alone"]').click();
+  }
+  selecionarConsumirNoLocal() {
+    cy.get('[data-testid="local_alone"]').click();
+  }
+  selecionarFormaDePagamentoEmDinheiro() {
+    cy.get(
+      '.payment-methods > .expandable > [data-testid="expandable-content"] > :nth-child(1) > :nth-child(1) > .radio-chooser'
+    ).click()
+    this.validarElementosModalPagamento()
+    this.naoPrecisaDeTroco();
+  }
+  validarElementosModalPagamento() {
+  // Verifica se o campo de input está presente
+  cy.get('[data-testid="field-input"]')
+    .should('be.visible');
+  // Verifica se o botão "Não preciso de troco" está presente
+  cy.get('[data-testid="Não preciso de troco"]')
+    .should('be.visible');
+  // Verifica se o botão "Confirmar" está presente
+  cy.get('[data-testid="Confirmar"]')
+    .should('be.visible');
+  }
+  naoPrecisaDeTroco(){
+    cy.get('[data-testid="Não preciso de troco"]').click();
+  }
+  preencherCampoObservacoes(){
+    cy.get('[data-testid="input-text"]').type('Teste QA')
+  }
+
+  concordarComPoliticaPrivacidade()
+  {
+    cy.get('.box').click();
+  }
+
+  clicarNoBotaoFazerPedido(){
+     cy.get('#finalize_order') 
+     .should('be.visible') 
+     .click(); 
+    this.validarElementosPaginaConfirmacaoPedido();
+  }
+  validarElementosPaginaConfirmacaoPedido(){
+    // Verifica se o cabeçalho contém "Pedido realizado"
+    cy.get('.header')
+      .should('contain', 'Pedido realizado');
+    // Verifica se a mensagem de feedback contém "Pedido realizado com sucesso!"
+    cy.get('.feedback')
+      .should('contain', 'Pedido realizado com sucesso!');
+    // Verifica se o botão "Acompanhar pedido" está presente e visível
+    cy.get('.primary')
+      .should('be.visible')
+      .and('contain', 'Acompanhar pedido');
+    // Verifica se o botão "Continuar para o WhatsApp" está presente e visível
+    cy.get('.outline')
+      .should('be.visible')
+      .and('contain', 'Continuar para o WhatsApp');
+
   }
 }
 
