@@ -1,0 +1,56 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout do código do repositório
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Configura o Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Define a versão do Node.js
+
+      # Instala dependências do projeto
+      - name: Install dependencies
+        run: npm install
+
+      # Instala Cypress
+      - name: Install Cypress
+        run: npm install cypress
+
+      # Executa os testes E2E em modo headless
+      - name: Run Cypress tests
+        run: npx cypress run
+
+      # Faz o upload dos vídeos e screenshots em caso de falha
+      - name: Upload Cypress videos
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-videos
+          path: cypress/videos
+
+      - name: Upload Cypress screenshots
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+# - name: Run Cypress tests with Dashboard
+#   run: npx cypress run --record --key $CYPRESS_RECORD_KEY
+#   env:
+#     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
